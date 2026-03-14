@@ -1,5 +1,21 @@
-Trigger on push to the main branch
-Use an Ubuntu runner
-Set up .NET SDK 
-Restore dependencies
-Build and test the application
+name: .NET CI Pipeline
+on:
+  push:
+    branshes:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: action/checkout@v3
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0'
+      - name: Restore dependencies
+        run : dotnet restore
+      - name: Build the application
+        run : dotnet build --configure Release -no-restore
+      - name: Run tests
+        run: dotnet test --no-restore  --verbosity normal
