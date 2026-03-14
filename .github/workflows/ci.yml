@@ -1,0 +1,5 @@
+Trigger on push to the main branch
+Use an Ubuntu runner
+Set up .NET SDK 
+Restore dependencies
+Build and test the application
